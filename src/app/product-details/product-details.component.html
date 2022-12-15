@@ -1,0 +1,28 @@
+<div class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img [src]="Product?.image" class="card-img-top w-100"  style="height: 500px;" alt="...">
+        </div>
+        <div class="col-md-6 text-center">
+            <h3>{{Product?.title}}</h3>
+            <h4>{{Product?.price|currency}}</h4>
+            <p>{{Product?.description}}</p>
+            <select (change)="changeQty($event.target,Product?.id)"  class="Qty custom-select text-center m-auto w-25 d-flex justify-content-center">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+
+            </select>
+            <button class="btn btn-primary d-flex justify-content-center m-auto my-2" (click)="addToCart(Product?.id)">Add to Cart</button>
+            <a routerLink="/home">Back to Product List</a>
+
+        </div>
+    </div>
+</div>

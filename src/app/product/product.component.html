@@ -1,0 +1,42 @@
+ <div class="container my-5">
+    <div class="row">
+        <div  *ngFor="let Product of Products"  class="col-md-4 mb-3" style="height: 600px;" >
+            <div class="card" [attr.data.id]="Product.id" [id]="Product.id">
+              <a [routerLink]="['/ProductDetails',Product.id]"> <img [src]="Product.image" class="card-img-top w-100"  style="height: 350px;" alt="..."></a>
+              <div class="card-body">
+                <h5 class="card-title text-center">{{Product.title}}</h5>
+                <span hidden>{{Product.id}}</span>
+                <h6 class="text-center">{{Product.price|currency}}</h6>
+                <select (change)="changeQty($event.target,Product.id)"  class="Qty custom-select text-center m-auto w-25 d-flex justify-content-center">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+
+                </select>
+                <button class="btn btn-primary d-flex justify-content-center m-auto my-2" (click)="addToCart(Product.id)">Add to Cart</button>
+
+              </div>
+
+            </div>                
+        </div>
+
+    </div>
+    
+ </div>
+ <!-- <div class="row">
+    <div *ngFor="let Product of Products"  class="card  col-md-3 p-1 " >
+        <img [src]="Product.image" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+</div> -->
