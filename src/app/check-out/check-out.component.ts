@@ -8,7 +8,7 @@ import { CartService } from '../cart.service';
 })
 export class CheckOutComponent {
   name:string='';
-Amount:number=0;
+  Amount:number=0;
   constructor(private CartService:CartService) {
     this.name=this.CartService.name;
     this.Amount=CartService.total;

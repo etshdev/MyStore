@@ -13,13 +13,9 @@ import { Router } from '@angular/router';
 export class CartComponent {
 
    cartProducts: Product []=[];
-  Total:number=0;
   constructor(private _cartservice:CartService , private Router:Router) {
     this.cartProducts= _cartservice.CartProducts;
-    this.cartProducts.map((val)=>{
-      
-      this.Total+=val.Qty*val.price
-    })
+
   }
   
   CheckOutForm = new FormGroup({
@@ -28,21 +24,21 @@ export class CartComponent {
     creditCardNumber: new FormControl('',[Validators.required,Validators.pattern('[0-9]{16}$')]),
 
   });
-  CalTotal()
-  {
-    this.Total=0;
-    this.cartProducts.map((val)=>{
-      this.Total+=val.Qty*val.price
-    })
-  }
+  
   CheckOut(CheckOutForm:any)
   {
     if(CheckOutForm.valid)
     {
       this._cartservice.name=CheckOutForm.value.fullName;
-      this._cartservice.total=this.Total;
+      // this._cartservice.total=this.Total;
       this.Router.navigate(['/checkout']);
       this._cartservice.CartProducts=[];
     }
+  }
+
+  deleteProduct(product:Product):void
+  {
+    this._cartservice.CartProducts.splice(this._cartservice.CartProducts.findIndex(item => item.id === product.id), 1)
+    alert("product Deleted From Cart")
   }
 }
